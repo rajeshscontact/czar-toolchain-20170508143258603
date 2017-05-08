@@ -1,0 +1,102 @@
+{
+    "$schema": "http://json-schema.org/draft-04/schema#",
+    "title": "Czar Toolchain Deployment to Bluemix",
+    "description": "czar toolchain",
+    "longDescription": "Information entered here will be used at deployment time.",
+    "type": "object",
+    "properties": {
+        "repo-branch": {
+            "description": "Git repo branch",
+            "type": "string"
+        },
+        "deploy-org": {
+            "description": "Deploy to this Bluemix Organization",
+            "type": "string"
+        },
+        "deploy-space": {
+            "description": "Deploy to this space",
+            "type": "string"
+        },
+        "deploy-region": {
+            "description": "Deploy to this region",
+            "type": "string"
+        },
+        "apic-url": {
+            "description": "APIC URL",
+            "type": "string"
+        },
+        "apic-user": {
+            "description": "APIC username",
+            "type": "string"
+        },
+        "apic-pass": {
+            "description": "APIC password",
+            "type": "password"
+        }
+    },
+    "required": [
+        "repo-branch",
+        "deploy-region",
+        "deploy-org",
+        "deploy-space",
+        "apic-user",
+        "apic-pass",
+        "shared-secret"
+        ],
+    "form": [
+        {
+            "type": "validator",
+            "url": "/devops/setup/bm-helper/helper.html"
+        },
+        {
+            "type": "text",
+            "readonly": false,
+            "title": "Git repo branch",
+            "key": "repo-branch"
+        },
+        {
+            "type": "text",
+            "readonly": false,
+            "title": "APIC Username",
+            "key": "apic-user"
+        },
+        {
+            "type": "password",
+            "readonly": false,
+            "title": "APIC Password",
+            "key": "apic-pass"
+        },
+        {
+            "type": "table",
+            "columnCount": 3,
+            "widths": ["30%", "35%", "35%"],
+            "items": [
+                {
+                    "type": "label",
+                    "title": "Region"
+                },
+                {
+                    "type": "label",
+                    "title": "Organization"
+                },
+                {
+                    "type": "label",
+                    "title": "Space"
+                },
+                {
+                    "type": "select",
+                    "key": "deploy-region"
+                },
+                {
+                    "type": "select",
+                    "key": "deploy-org"
+                },
+                {
+                    "type": "select",
+                    "key": "deploy-space",
+                    "readonly": false
+                }
+            ]
+        }
+    ]
+}

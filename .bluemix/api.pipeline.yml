@@ -1,0 +1,69 @@
+---
+stages:
+- name: BUILD US-South
+  inputs:
+  - service: ${REPO}
+    type: git
+    branch: ${BRANCH}
+  triggers:
+  - type: commit
+  properties:
+  - name: BXLOGIN_API_ENDPOINT
+    value: ${BXLOGIN_API_ENDPOINT}
+    type: text
+  - name: APIC_URL
+    value: ${APIC_URL_US}
+    type: text
+  - name: APIC_USER
+    value: ${APIC_USER}
+    type: text
+  - name: APIC_PASS
+    value: ${APIC_PASS}
+    type: secure
+  - name: ORG
+    value: ${ORG}
+    type: text
+  - name: SPACE
+    value: ${SPACE}
+    type: text
+  jobs:
+  - name: Publish Inventory Czar to US-South
+    type: builder
+    artifact_dir: ''
+    build_type: npm
+    script: |-
+      #!/bin/bash
+      # The default Node.js version is 0.10.40
+      # To use Node.js 0.12.7, uncomment the following line:
+      export PATH=/opt/IBM/node-v0.12/bin:$PATH
+      # To use Node.js 4.2.2, uncomment the following line:
+      #export PATH=/opt/IBM/node-v4.2/bin:$PATH
+      #npm install
+      echo $PWD
+      ls -al .
+      # apic api url
+      APIC_API_URL=api.${APIC_URL}
+
+      # set orgs
+      CHARLST="[@|.|-|_]"
+      ORGS=$(echo $ORG|sed "s/$CHARLST//g")-$SPACE
+      ORGS=$(echo $ORGS|tr '[:upper:]' '[:lower:]')
+
+      # Configure APIC cli
+      echo -e "Start installing apiconnect cli"
+      npm install -g apiconnect
+      echo -e "completed installing apic cli"
+      echo "yes" | apic
+      echo "no" | apic
+
+      echo -e "Login and config set catalog.."
+      apic login -u $APIC_USER -p $APIC_PASS -s ${APIC_URL}
+      apic config:set catalog=apic-catalog://${APIC_URL}/orgs/${ORGS}/catalogs/testToolChain
+
+      # publish czar provider
+      echo -e "publish czarProvider.."
+      pushd czarProvider
+      ../yaml w --inplace bluemix.yaml
+      cat bluemix.yaml
+      apic publish bluemix-product.yaml
+      popd
