@@ -50,6 +50,11 @@ stages:
       ORGS=$(echo $ORGS|tr '[:upper:]' '[:lower:]')
 
       # Configure APIC cli
+      echo -e "Start updating npm package"
+      npm install -g npm
+      echo -e "completed updating npm package"
+
+      # Configure APIC cli
       echo -e "Start installing apiconnect cli"
       npm install -g apiconnect
       echo -e "completed installing apic cli"
