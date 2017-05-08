@@ -51,7 +51,7 @@ stages:
 
       # Configure APIC cli
       echo -e "Start installing apiconnect cli"
-      sudo npm install -g apiconnect
+      npm install -g apiconnect
       echo -e "completed installing apic cli"
       echo "yes" | apic
       echo "no" | apic
