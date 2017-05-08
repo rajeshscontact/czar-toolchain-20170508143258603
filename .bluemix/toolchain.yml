@@ -9,7 +9,7 @@ git-api:
   service_id: githubpublic
   parameters:
     repo_name: "czar-cloudnative-api-{{name}}"
-    repo_url: "https://github.com/Cedrusco/cedrus-api-generator"
+    repo_url: "https://github.com/rajeshscontact/czar-toolchain-20170508143258603.git"
     type: clone
     has_issues: true
 
