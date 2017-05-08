@@ -1,6 +1,6 @@
 ---
 name: "api toolchain"
-description: "deploy refarch-cloudnative-api"
+description: "deploy czar-cloudnative-api"
 version: 0.1
 required:
  - deploy
@@ -8,8 +8,8 @@ required:
 git-api:
   service_id: githubpublic
   parameters:
-    repo_name: "refarch-cloudnative-api-{{name}}"
-    repo_url: "https://github.com/ibm-cloud-architecture/refarch-cloudnative-api"
+    repo_name: "czar-cloudnative-api-{{name}}"
+    repo_url: "https://github.com/Cedrusco/cedrus-api-generator"
     type: clone
     has_issues: true
 
