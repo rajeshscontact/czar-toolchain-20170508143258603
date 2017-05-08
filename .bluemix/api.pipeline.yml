@@ -62,7 +62,7 @@ stages:
 
       # publish czar provider
       echo -e "publish czarProvider.."
-      pushd czarProvider
+      pushd swaggerConfig
       ../yaml w --inplace bluemix.yaml
       cat bluemix.yaml
       apic publish bluemix-product.yaml
