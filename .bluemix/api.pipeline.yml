@@ -28,7 +28,6 @@ stages:
       #!/bin/bash
       # Push app
       cf push $CF_APP
-
 - name: publish api to apiconnect
   inputs:
   - service: ${REPO}
