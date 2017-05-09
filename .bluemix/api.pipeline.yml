@@ -73,10 +73,15 @@ stages:
 
       ls -l
 
+      # pushing microapp
+      echo -e "pushing micro app to bluemix"
+      cf push
+
       # publish czar provider
-      echo -e "publish czarProvider.."
+      echo -e "publish czarProduct.."
       cd swaggerConfig
       #../yaml w --inplace bluemix.yaml
       cat bluemix.yaml
       apic publish bluemix-product.yaml
       cd ..
+      echo -e "completed publishing of czarProduct.."
