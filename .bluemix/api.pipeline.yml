@@ -65,20 +65,18 @@ stages:
       apic login -u $APIC_USER -p $APIC_PASS -s ${APIC_URL}
       apic config:set catalog=apic-catalog://${APIC_URL}/orgs/${ORGS}/catalogs/sb
 
-      ls -l
-
-
-
       # install yaml
       if [ ! -f ./yaml ]; then
         wget https://github.com/mikefarah/yaml/releases/download/1.5/yaml_linux_amd64 -O yaml
         chmod +x yaml
       fi
 
+      ls -l
+
       # publish czar provider
       echo -e "publish czarProvider.."
       cd swaggerConfig
-      ../../yaml w --inplace bluemix.yaml
+      ../yaml w --inplace bluemix.yaml
       cat bluemix.yaml
       apic publish bluemix-product.yaml
       cd ..
