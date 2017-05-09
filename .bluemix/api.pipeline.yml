@@ -11,9 +11,6 @@ stages:
   - name: BXLOGIN_API_ENDPOINT
     value: ${BXLOGIN_API_ENDPOINT}
     type: text
-  - name: BLUEMIX_API_ENDPOINT
-    value: ${BLUEMIX_API_ENDPOINT}
-    type: text
   - name: APIC_URL
     value: ${APIC_URL_US}
     type: text
@@ -28,10 +25,6 @@ stages:
     type: text
   - name: SPACE
     value: ${SPACE}
-    type: text
-  - name: CF_APP_NAME
-    value: ${CF_APP_NAME}
-    value: undefined
     type: text
   jobs:
   - name: Publish Inventory Czar to US-South
@@ -81,8 +74,8 @@ stages:
       ls -l
 
       # pushing microapp
-      echo -e "pushing micro app to bluemix"
-      cf push ${CF_APP_NAME}
+      #echo -e "pushing micro app to bluemix"
+      #cf push ${CF_APP_NAME}
 
       # publish czar provider
       echo -e "publish czarProduct.."
