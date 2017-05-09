@@ -67,6 +67,14 @@ stages:
 
       ls -l
 
+
+
+      # install yaml
+      if [ ! -f ./yaml ]; then
+        wget https://github.com/mikefarah/yaml/releases/download/1.5/yaml_linux_amd64 -O yaml
+        chmod +x yaml
+      fi
+
       # publish czar provider
       echo -e "publish czarProvider.."
       cd swaggerConfig
