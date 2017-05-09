@@ -1,6 +1,6 @@
 ---
 stages:
-- name: publish api to apiconnect
+- name: BUILD US-South
   inputs:
   - service: ${REPO}
     type: git
@@ -26,12 +26,9 @@ stages:
   - name: SPACE
     value: ${SPACE}
     type: text
-  - name: CF_APP_NAME
-    value: ${CF_APP_NAME}
-    type: text
   jobs:
   - name: Publish Inventory Czar to US-South
-    type: deployer
+    type: builder
     artifact_dir: ''
     build_type: npm
     script: |-
