@@ -1,6 +1,6 @@
 ---
 stages:
-- name: BUILD US-South
+- name: Build and Deploy to API Connect
   inputs:
   - service: ${REPO}
     type: git
@@ -25,6 +25,12 @@ stages:
     type: text
   - name: SPACE
     value: ${SPACE}
+    type: text
+  - name: REGION
+    value: ${REGION}
+    type: text
+  - name: CF_APP_NAME
+    value: ${CF_APP_NAME}
     type: text
   jobs:
   - name: Publish Inventory Czar to US-South
@@ -85,3 +91,36 @@ stages:
       apic publish bluemix-product.yaml
       cd ..
       echo -e "completed publishing of czarProduct.."
+- name: deploy micro app to bluemix
+  inputs:
+  - type: job
+    stage: Build and Deploy to API Connect
+    job: Build
+  triggers:
+  - type: stage
+  properties:
+  - name: ORG
+    value: ${ORG}
+    type: text
+  - name: SPACE
+    value: ${SPACE}
+    type: text
+  - name: REGION
+    value: ${REGION}
+    type: text
+  - name: CF_APP_NAME
+    value: ${CF_APP_NAME}
+    type: text
+  jobs:
+  - name: deploy micro app to bluemix
+    type: deployer
+    target:
+      region_id: ${REGION}
+      organization: ${ORG}
+      space: ${SPACE}
+      application: ${CF_APP_NAME}
+    script: |
+      #!/bin/bash
+      # Push app
+      cf push $CF_APP
+      export CF_APP_NAME="$CF_APP"
