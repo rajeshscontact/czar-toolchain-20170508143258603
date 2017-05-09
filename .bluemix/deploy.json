@@ -25,6 +25,10 @@
             "description": "APIC URL",
             "type": "string"
         },
+        "micro-app-name": {
+            "description": "API Micro App Name",
+            "type": "string"
+        },
         "apic-user": {
             "description": "APIC username",
             "type": "string"
@@ -39,6 +43,7 @@
         "deploy-region",
         "deploy-org",
         "deploy-space",
+        "micro-app-name",
         "apic-user",
         "apic-pass",
         "shared-secret"
@@ -53,6 +58,12 @@
             "readonly": false,
             "title": "Git repo branch",
             "key": "repo-branch"
+        },
+        {
+            "type": "text",
+            "readonly": false,
+            "title": "API Micro App Name",
+            "key": "micro-app-name"
         },
         {
             "type": "text",

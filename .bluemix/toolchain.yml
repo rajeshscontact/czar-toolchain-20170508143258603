@@ -32,6 +32,7 @@ pipeline-api:
        APIC_URL_US: "{{deploy.parameters.apic-url-us}}"
        APIC_USER: "{{deploy.parameters.apic-user}}"
        APIC_PASS: "{{deploy.parameters.apic-pass}}"
+       CF_APP_NAME: "{{deploy.parameters.micro-app-name}}"
       execute: false
 
 deploy:
@@ -45,5 +46,6 @@ deploy:
     route-domain: "mybluemix.net"
     apic-url-us: "us.apiconnect.ibmcloud.com"
     bxlogin-api-endpoint: "login.ng.bluemix.net"
+    micro-app-name: ""
     apic-user: ""
     apic-pass: ""
