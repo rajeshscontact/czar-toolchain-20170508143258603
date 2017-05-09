@@ -23,7 +23,8 @@ pipeline-api:
     configuration:
       content: $file(api.pipeline.yml)
       env:
-       BXLOGIN_API_ENDPOINT: "{{deploy.parameters.bxlogin-api-endpoint}}"
+       BXLOGIN_API_ENDPOINT: "{{deploy.parameters.bxlogin-api-endpoint}}",
+       BLUEMIX_API_ENDPOINT: "{{deploy.parameters.bluemix-api-endpoint}}"
        REPO: "git-api"
        BRANCH: "{{deploy.parameters.repo-branch}}"
        REGION: "{{deploy.parameters.deploy-region}}"
@@ -45,5 +46,6 @@ deploy:
     route-domain: "mybluemix.net"
     apic-url-us: "us.apiconnect.ibmcloud.com"
     bxlogin-api-endpoint: "login.ng.bluemix.net"
+    bluemix-api-endpoint: "https://api.ng.bluemix.net"
     apic-user: ""
     apic-pass: ""

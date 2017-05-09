@@ -11,6 +11,9 @@ stages:
   - name: BXLOGIN_API_ENDPOINT
     value: ${BXLOGIN_API_ENDPOINT}
     type: text
+  - name: BLUEMIX_API_ENDPOINT
+    value: ${BLUEMIX_API_ENDPOINT}
+    type: text
   - name: APIC_URL
     value: ${APIC_URL_US}
     type: text
@@ -74,6 +77,8 @@ stages:
       ls -l
 
       # pushing microapp
+      echo -e "login to bluemix"
+      cf login -u $APIC_USER -p $APIC_PASS -a ${BLUEMIX_API_ENDPOINT} -o ${ORG} -s ${SPACE}
       echo -e "pushing micro app to bluemix"
       cf push
 
