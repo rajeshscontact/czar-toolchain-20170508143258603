@@ -95,7 +95,7 @@ stages:
   inputs:
   - type: job
     stage: Build and Deploy to API Connect
-    job: Build
+    job: Publish Inventory Czar to US-South
   triggers:
   - type: stage
   properties:
@@ -122,5 +122,8 @@ stages:
     script: |
       #!/bin/bash
       # Push app
+      echo -e "Pushing micro app to bluemix"
       cf push $CF_APP
       export CF_APP_NAME="$CF_APP"
+      # View logs
+      cf logs "${CF_APP}" --recent
