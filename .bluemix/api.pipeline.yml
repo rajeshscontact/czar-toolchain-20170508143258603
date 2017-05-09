@@ -29,6 +29,10 @@ stages:
   - name: SPACE
     value: ${SPACE}
     type: text
+  - name: CF_APP_NAME
+    value: ${CF_APP_NAME}
+    value: undefined
+    type: text
   jobs:
   - name: Publish Inventory Czar to US-South
     type: builder
@@ -77,12 +81,8 @@ stages:
       ls -l
 
       # pushing microapp
-      #code to replace commit
-      npm install -g cf
-      echo -e "login to bluemix"
-      cf login -u $APIC_USER -p $APIC_PASS -a ${BLUEMIX_API_ENDPOINT} -o ${ORG} -s ${SPACE}
       echo -e "pushing micro app to bluemix"
-      cf push
+      cf push ${CF_APP_NAME}
 
       # publish czar provider
       echo -e "publish czarProduct.."
