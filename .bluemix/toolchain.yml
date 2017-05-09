@@ -23,7 +23,7 @@ pipeline-api:
     configuration:
       content: $file(api.pipeline.yml)
       env:
-       BXLOGIN_API_ENDPOINT: "{{deploy.parameters.bxlogin-api-endpoint}}",
+       BXLOGIN_API_ENDPOINT: "{{deploy.parameters.bxlogin-api-endpoint}}"
        BLUEMIX_API_ENDPOINT: "{{deploy.parameters.bluemix-api-endpoint}}"
        REPO: "git-api"
        BRANCH: "{{deploy.parameters.repo-branch}}"
